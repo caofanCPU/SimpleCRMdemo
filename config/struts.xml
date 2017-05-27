@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<!-- #1 常量 -->
+	<!-- 1.1开发模式 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<!-- 1.2标签主题，简单风格 -->
+	<constant name="struts.ui.theme" value="simple"></constant>
+	
+	<!-- #2 公共项 -->
+	<package name="common" namespace="/" extends="struts-default">
+		<!-- 2.2 拦截器配置 
+			* 先声明
+			方法1：每一个action单独使用,需要多次引用，否则默认将被覆盖
+				<action name="">
+					<interceptor-ref name="defaultStack"></interceptor-ref>
+					<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				</action>
+			方法2：将多个拦截器打包生成自定义栈，action使用栈
+				* 自定义拦截器栈 
+				<interceptor-stack name="loginStack">
+					<interceptor-ref name="defaultStack"></interceptor-ref>
+					<interceptor-ref name="loginInterceptor"></interceptor-ref>
+				</interceptor-stack>
+				* action引用
+				<action name="">
+					<interceptor-ref name="loginStack"></interceptor-ref>
+				</action>
+			方法3：将自定义栈，把默认栈覆盖
+				<default-interceptor-ref name="loginStack"></default-interceptor-ref>
+		-->
+		<interceptors>
+			<!-- @1)声明（注册） -->
+            <!-- 
+                                自定义拦截器类是没有错的。
+                                   问题原因：在我所使用的ssh框架中，类的创建应该是交给spring管理的，
+                                   所以不能在struts.xml中直接注册，
+                                   应该先在applicationcontext.xml中注册。
+             -->
+			<interceptor name="loginInterceptor" class="myloginInterceptor"></interceptor>
+			<!-- @2)自定义拦截器栈 -->
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+                <interceptor-ref name="loginInterceptor">
+                    <param name="excludeMethods">login</param>
+                </interceptor-ref>
+				<!-- 自定义拦截器，对login方法不要拦截，VIP放行
+					* excludeMethods 配置不包含的方法，多个方法使用逗号分隔
+				-->
+				<!-- <interceptor-ref name="loginInterceptor">
+					<param name="excludeMethods">login</param>
+				</interceptor-ref> -->
+			</interceptor-stack>
+		</interceptors>
+		
+		<!-- @3)声明默认  -->
+		<default-interceptor-ref name="loginStack"></default-interceptor-ref>
+		
+	
+		<!-- @4)全局结果集 -->
+		<global-results>
+			<result name="login">/WEB-INF/pages/login.jsp</result>
+		</global-results>
+	
+		<!-- 2.1 配置公共 jsp访问  action 
+			版本1：通过自定义action实现
+				<action name="uiAction" class="com.itheima.crm.web.action.UIAction">
+					<result name="success">/WEB-INF/pages/frame/top.jsp</result>
+				</action>
+			版本2：通过ActionSupport
+				<action name="uiAction" class="com.opensymphony.xwork2.ActionSupport">
+					<result name="success">/WEB-INF/pages/frame/top.jsp</result>
+				</action>
+				能否将class删除？ class默认值“ActionSupport”
+				<action name="uiAction">
+					<result name="success">/WEB-INF/pages/frame/top.jsp</result>
+				</action>
+			版本3：通配符
+				result.name 默认值：success
+				uiAction_*_*
+					第一个星匹配文件夹名称，通过{1}获取
+					第二个星匹配jsp文件名称，通过{2}获取
+				例如：
+					uiAction_frame_top
+					/WEB-INF/pages/frame/top.jsp
+			总结：
+				action.class 默认值：ActionSupport
+				action.method 默认值：execute
+				result.name 默认值：success	
+		-->
+
+	</package>
+	
+	
+	<!-- 3 加载其他配置文件 -->
+	<!-- 3.1 员工 -->
+	<include file="struts/struts-staff.xml"></include>
+	<!-- 3.2 职务 -->
+	<include file="struts/struts-post.xml"></include>
+	<!-- 3.3课程类别-->
+	<include file="struts/struts-coursetype.xml"></include>
+	
+</struts>
