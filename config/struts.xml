@@ -56,7 +56,7 @@
 		</interceptors>
 		
 		<!-- @3)声明默认  -->
-		<default-interceptor-ref name="loginStack"></default-interceptor-ref>
+		<!-- <default-interceptor-ref name="loginStack"></default-interceptor-ref> -->
 		
 	
 		<!-- @4)全局结果集 -->

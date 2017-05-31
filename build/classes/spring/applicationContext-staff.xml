@@ -17,15 +17,17 @@
 
 	<!-- 员工配置项：dao、service -->
 	
-	<bean id="staffDao" class="com.itheima.crm.staff.dao.impl.StaffDaoImpl">
+	<bean id="staffDao" class="com.xyb.crm.staff.dao.impl.StaffDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
-	<bean id="staffService" class="com.itheima.crm.staff.service.impl.StaffServiceImpl">
+	<bean id="staffService" class="com.xyb.crm.staff.service.impl.StaffServiceImpl">
 		<property name="staffDao" ref="staffDao"></property>
 	</bean>
     
-    <bean id="staffAction" class="com.itheima.crm.staff.web.action.StaffAction" scope="prototype">
+    <bean id="staffAction" class="com.xyb.crm.staff.web.action.StaffAction" scope="prototype">
         <property name="staffService" ref="staffService"></property>
+        <property name="departmentService" ref="departmentService"></property>
     </bean>
+
 </beans>

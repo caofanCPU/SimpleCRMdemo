@@ -37,7 +37,7 @@
 				<prop key="hibernate.format_sql">true</prop>
 			</props>
 		</property>
-		<property name="mappingLocations" value="classpath:com/itheima/crm/*/domain/*.hbm.xml"></property>
+		<property name="mappingLocations" value="classpath:com/xyb/crm/*/domain/*.hbm.xml"></property>
 	</bean>
 	
 	<!-- 3.事务管理 -->
@@ -61,23 +61,16 @@
 		* 强制cglib ：  proxy-target-class="true"
 	-->
 	<aop:config proxy-target-class="true">
-		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.itheima.crm.*.service..*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut="execution(* com.xyb.crm.*.service..*.*(..))"/>
 	</aop:config>
 
     <!-- 自定义的拦截器对象 -->
     <bean
         id="myloginInterceptor"
-        class="com.itheima.crm.web.interceptor.LoginInterceptor"
+        class="com.xyb.crm.web.interceptor.LoginInterceptor"
         scope="prototype">
     </bean>
-    
-<!--     <bean
-        id="uiAction"
-        class="com.itheima.crm.staff.web.action.uiAction"
-        scope="prototype">   
-    </bean>
 
- -->
 	<!-- 4 导入其他配置文件 -->
 	<!-- 4.1 员工 -->
 	<import resource="applicationContext-staff.xml"/>
@@ -85,6 +78,6 @@
 	<import resource="applicationContext-department.xml"/>
 	<!-- 4.3 职务 -->
 	<import resource="applicationContext-post.xml"/>
-	<!-- 4.4课程类别 -->
+	<!-- 4.4 课程类别 -->
 	<import resource="applicationContext-coursetype.xml"/>
 </beans>

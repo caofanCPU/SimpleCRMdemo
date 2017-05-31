@@ -17,15 +17,16 @@
 
 	<!-- 部门配置项：dao、service -->
 	
-	<bean id="courseTypeDao" class="com.itheima.crm.coursetype.dao.impl.CourseTypeDaoImpl">
+	<bean id="courseTypeDao" class="com.xyb.crm.coursetype.dao.impl.CourseTypeDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 
-	<bean id="courseTypeService" class="com.itheima.crm.coursetype.service.impl.CourseTypeServiceImpl">
+	<bean id="courseTypeService" class="com.xyb.crm.coursetype.service.impl.CourseTypeServiceImpl">
 		<property name="courseTypeDao" ref="courseTypeDao"></property>
 	</bean>
     
-    <bean id="courseTypeAction" class="com.itheima.crm.coursetype.web.action.CourseTypeAction">
+    <bean id="courseTypeAction" class="com.xyb.crm.coursetype.web.action.CourseTypeAction">
+        <property name="courseTypeService" ref="courseTypeService"></property>
     </bean>
 
 </beans>

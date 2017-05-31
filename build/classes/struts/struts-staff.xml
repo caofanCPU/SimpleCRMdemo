@@ -21,14 +21,9 @@
 			<!-- 4 查询所有 -->
 			<result name="findAll">/WEB-INF/pages/staff/listStaff.jsp</result>
 			<!-- 5 编辑前，显示jsp页面 -->
-			<result name="editUI">/WEB-INF/pages/staff/editStaff.jsp</result>
-			<!-- 6 编辑成功 
-				* 重定向可以注入详细配置
-				* 默认使用
-					<result name="success" type="redirectAction">staffAction_home</result>
-					给actionName进行注入
-			-->
-			<result name="edit" type="redirectAction">
+			<result name="addOrEditUI">/WEB-INF/pages/staff/addOrEditStaff.jsp</result>
+			<!-- 6 添加或编辑成功  -->
+			<result name="addOrEdit" type="redirectAction">
 				<param name="namespace">/</param>
 				<param name="actionName">staffAction_findAll</param>
 			</result>

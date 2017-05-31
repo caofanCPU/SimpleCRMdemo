@@ -2,10 +2,10 @@ TD {
 	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: 'ËÎÌå'
 }
 BODY {
-	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: 'ËÎÌå'
+	FONT-SIZE: 16px; COLOR: #000000; FONT-FAMILY: 'Microsoft yahei'; background-size: contain;
 }
 INPUT {
-	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: 'ËÎÌå'
+	FONT-SIZE: 16px; COLOR: #000000; FONT-FAMILY: 'ËÎÌå'; padding:2px 8px; margin: 0 auto;
 }
 SELECT {
 	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: 'ËÎÌå'
@@ -78,4 +78,46 @@ BODY {
 	SCROLLBAR-BASE-COLOR: #4b9da7; 
 	scrollbar-3d-light-color: #4B9DA7;
 	scrollbar-dark-shadow-color: #4B9DA7
+}
+
+.cla1 {
+	FONT-SIZE: 12px; COLOR: #4b4b4b; LINE-HEIGHT: 18px; TEXT-DECORATION: none;
+}
+.login_msg{
+	font-family:serif;
+}
+.login_msg .msg{
+	background-color: #acf;
+}
+.login_msg .btn{
+	background-color: #9be;
+	width: 73px;
+	font-size: 18px;
+	font-family: Î¢ÈíÑÅºÚ;
+}
+
+.login_form {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 150px;
+	background-color: skyblue;
+	padding: 10px;
+}
+#font {
+	display: block;
+	height: 30px;
+	margin: 20px 0;
+}
+font>.errorMessage{
+	margin: 0;
+	padding: 0;
+}
+font>.errorMessage>li {
+	list-style: none;
+	line-height: 30px;
+}
+
+.form_wrap td,tr {
+	FONT-SIZE: 16px; COLOR: #000000; FONT-FAMILY: 'Microsoft yahei';
+	text-align: right;
 }

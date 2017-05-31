@@ -3,7 +3,7 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
     "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<!-- 员工配置 -->
+	<!-- 课程类别配置 -->
 	<package name="cou" namespace="/" extends="common">
 		<action name="courseTypeAction_*" class="courseTypeAction" method="{1}">
 			<!-- 1 查询所有 -->
@@ -13,7 +13,5 @@
 			<!-- 3 添加或编辑成功 -->
 			<result name="addOrEdit" type="redirectAction">courseTypeAction_findAll</result>
 		</action>
-	</package>
-	
-	
+	</package>	
 </struts>
